@@ -42,29 +42,50 @@ def render(repos, owner):
     )[:6]
     if not selected:
         raise RuntimeError('No eligible projects; preserving existing README')
-    rows = []
-    y = 100
+    assets = {}
+    links = []
     for index, repo in enumerate(selected, 1):
         name = repo['name']
         language = repo.get('language') or 'Source'
         description = ' '.join((repo.get('description') or DESCRIPTIONS.get(name) or 'Explore the source and documentation.').split())
-        lines = textwrap.wrap(description, width=94)
-        rows.append(f'<text x="30" y="{y}" fill="#79c0ff" font-size="20">{index:02} / {escape(name)}</text>')
-        rows.append(f'<text x="930" y="{y}" text-anchor="end" fill="#7ee787" font-size="14">{escape(language)} / stars {repo.get("stargazers_count", 0)}</text>')
-        for n, line in enumerate(lines):
-            rows.append(f'<text x="30" y="{y+34+n*23}" fill="#8b949e">{escape(line)}</text>')
-        y += 64 + len(lines)*23
-        if index < len(selected):
-            rows.append(f'<path d="M30 {y-25}h900" stroke="#21262d"/>')
-    height = y + 8
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="960" height="{height}" viewBox="0 0 960 {height}">
-<title>{escape(owner)} projects: {escape(', '.join(r['name'] for r in selected))}</title>
-<rect x="1" y="1" width="958" height="{height-2}" rx="14" fill="#0d1117" stroke="#30363d"/>
-<g font-family="monospace" font-size="16">
-<text x="30" y="39" fill="#7ee787" font-size="19">❯ <tspan fill="#e6edf3">ls ~/projects</tspan></text>
-<text x="930" y="39" text-anchor="end" fill="#8b949e" font-size="12">public repos / sorted by push</text>
-<path d="M30 60h900" stroke="#30363d"/>
-{''.join(rows)}</g></svg>'''
+        lines = textwrap.wrap(description, width=43)
+        if len(lines) > 2:
+            lines = [lines[0], textwrap.shorten(' '.join(lines[1:]), width=43, placeholder='…')]
+        body = ''.join(f'<text x="24" y="{92 + n * 24}" fill="#a6adb8">{escape(line)}</text>' for n, line in enumerate(lines))
+        title = textwrap.shorten(name, width=30, placeholder='…')
+        asset = f'img/projects/{name}.svg'
+        assets[asset] = f'''<svg xmlns="http://www.w3.org/2000/svg" width="470" height="182" viewBox="0 0 470 182">
+<title>{escape(name)}: {escape(description)}</title>
+<rect x="1" y="1" width="468" height="180" rx="12" fill="#0d1117" stroke="#30363d"/>
+<g font-family="monospace" font-size="15">
+<text x="24" y="29" fill="#6e7681" font-size="11">PROJECT / {index:02}</text>
+<text x="24" y="58" fill="#79c0ff" font-size="19">{escape(title)}</text>
+<text x="445" y="29" fill="#79c0ff" text-anchor="end">↗</text>
+{body}
+<path d="M24 137h422" stroke="#21262d"/>
+<text x="24" y="162" fill="#d2a8ff" font-size="13">{escape(language)}</text>
+<text x="446" y="162" fill="#8b949e" font-size="13" text-anchor="end">stars {repo.get('stargazers_count', 0)}</text>
+</g></svg>'''
+        alt = escape(f'{name}: {description}', {'"': '&quot;'})
+        alignment = ' align="right"' if index % 2 == 0 else ''
+        links.append(f'<a href="https://github.com/{owner}/{name}"><img src="{asset}" width="49%"{alignment} alt="{alt}"></a>')
+    if len(selected) % 2:
+        asset = 'img/browse-all.svg'
+        assets[asset] = '''<svg xmlns="http://www.w3.org/2000/svg" width="470" height="182" viewBox="0 0 470 182">
+<title>Browse all GitHub repositories</title>
+<rect x="1" y="1" width="468" height="180" rx="12" fill="#0d1117" stroke="#30363d"/>
+<g font-family="monospace" font-size="15">
+<text x="24" y="29" fill="#6e7681" font-size="11">EXPLORE / MORE</text>
+<text x="24" y="58" fill="#7ee787" font-size="19">❯ <tspan fill="#79c0ff">Browse all</tspan></text>
+<text x="445" y="29" fill="#79c0ff" text-anchor="end">↗</text>
+<text x="24" y="92" fill="#a6adb8">More tools, experiments, and source code.</text>
+<path d="M24 137h422" stroke="#21262d"/>
+<text x="24" y="162" fill="#d2a8ff" font-size="13">~/repos</text>
+<text x="446" y="162" fill="#8b949e" font-size="13" text-anchor="end">open GitHub ↗</text>
+</g></svg>'''
+        links.append(f'<a href="https://github.com/{owner}?tab=repositories"><img src="{asset}" width="49%" align="right" alt="Browse all GitHub repositories"></a>')
+    rows = ['<p>' + ' '.join(links[i:i+2]) + '</p>' for i in range(0, len(links), 2)]
+    return assets, '\n\n'.join(rows)
 
 
 def update_followers(owner, header):
@@ -95,7 +116,10 @@ def update(readme, projects):
 if __name__ == '__main__':
     owner = os.environ.get('PROFILE_OWNER', 'kuryrc')
     root = Path(__file__).resolve().parents[1]
-    projects = render(fetch_repos(owner), owner)
+    assets, projects = render(fetch_repos(owner), owner)
     update_followers(owner, root / 'img/follow.svg')
-    (root / 'img/projects-panel.svg').write_text(projects)
-    update(root / 'README.md', f'[![Automatically updated projects](img/projects-panel.svg)](https://github.com/{owner}?tab=repositories)')
+    for name, svg in assets.items():
+        path = root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(svg)
+    update(root / 'README.md', projects)

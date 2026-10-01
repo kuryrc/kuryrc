@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="110" viewBox="0 0 320 110">
-<title>Open kuryrc_channel on Telegram</title>
-<path d="M1 1h305a13 13 0 0 1 13 13v82a13 13 0 0 1-13 13H1Z" fill="#161b22" stroke="#30363d"/>
-<g font-family="monospace"><text x="22" y="30" font-size="12" fill="#8b949e">TELEGRAM / CHANNEL</text>
-<text x="22" y="60" font-size="18" fill="#7ee787">❯ <tspan fill="#e6edf3">Open channel</tspan><tspan dx="12" fill="#79c0ff">↗</tspan></text>
-<text x="22" y="88" font-size="14" fill="#79c0ff">@kuryrc_channel</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="44" viewBox="0 0 320 44"><title>Telegram</title><path d="M1 1h307a11 11 0 0 1 11 11v20a11 11 0 0 1-11 11H1Z" fill="#161b22" stroke="#30363d"/><g font-family="monospace" font-size="15"><text x="22" y="28" fill="#c9d1d9">Telegram <tspan fill="#79c0ff">↗</tspan></text></g></svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="470" height="182" viewBox="0 0 470 182">
+<title>raycast-plugins: Explore the source and documentation.</title>
+<rect x="1" y="1" width="468" height="180" rx="12" fill="#0d1117" stroke="#30363d"/>
+<g font-family="monospace" font-size="15">
+<text x="24" y="29" fill="#6e7681" font-size="11">PROJECT / 03</text>
+<text x="24" y="58" fill="#79c0ff" font-size="19">raycast-plugins</text>
+<text x="445" y="29" fill="#79c0ff" text-anchor="end">↗</text>
+<text x="24" y="92" fill="#a6adb8">Explore the source and documentation.</text>
+<path d="M24 137h422" stroke="#21262d"/>
+<text x="24" y="162" fill="#d2a8ff" font-size="13">TypeScript</text>
+<text x="446" y="162" fill="#8b949e" font-size="13" text-anchor="end">stars 0</text>
+</g></svg>

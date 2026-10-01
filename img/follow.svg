@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="110" viewBox="0 0 320 110">
-<title>Follow kuryrc on GitHub — click to open profile</title>
-<path d="M14 1h305v108H14A13 13 0 0 1 1 96V14A13 13 0 0 1 14 1Z" fill="#161b22" stroke="#30363d"/>
-<g font-family="monospace"><text x="22" y="30" font-size="12" fill="#8b949e">GITHUB / CONNECT</text>
-<text x="22" y="60" font-size="18" fill="#7ee787">❯ <tspan fill="#e6edf3">Follow on GitHub</tspan><tspan dx="12" fill="#79c0ff">↗</tspan></text>
-<text id="followers" x="22" y="88" font-size="14" fill="#8b949e">Followers / 9</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="44" viewBox="0 0 320 44"><title>GitHub</title><path d="M12 1h307v42H12A11 11 0 0 1 1 32V12A11 11 0 0 1 12 1Z" fill="#161b22" stroke="#30363d"/><g font-family="monospace" font-size="15"><text x="22" y="28" fill="#c9d1d9">GitHub <tspan fill="#79c0ff">↗</tspan></text><text id="followers" x="292" y="27" text-anchor="end" font-size="12" fill="#8b949e">Followers / 9</text></g></svg>

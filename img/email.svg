@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="110" viewBox="0 0 320 110">
-<title>Send email to kuryrc@gmail.com — click to compose</title>
-<path d="M1 1h318v108H1Z" fill="#161b22" stroke="#30363d"/>
-<g font-family="monospace"><text x="22" y="30" font-size="12" fill="#8b949e">EMAIL / SAY HELLO</text>
-<text x="22" y="60" font-size="18" fill="#7ee787">❯ <tspan fill="#e6edf3">Send email</tspan><tspan dx="12" fill="#79c0ff">↗</tspan></text>
-<text x="22" y="88" font-size="14" fill="#79c0ff">kuryrc@gmail.com</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="44" viewBox="0 0 320 44"><title>Email</title><path d="M1 1h318v42H1Z" fill="#161b22" stroke="#30363d"/><g font-family="monospace" font-size="15"><text x="22" y="28" fill="#c9d1d9">Email <tspan fill="#79c0ff">↗</tspan></text></g></svg>
