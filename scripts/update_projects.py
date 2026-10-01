@@ -67,8 +67,7 @@ def render(repos, owner):
 <text x="446" y="162" fill="#8b949e" font-size="13" text-anchor="end">stars {repo.get('stargazers_count', 0)}</text>
 </g></svg>'''
         alt = escape(f'{name}: {description}', {'"': '&quot;'})
-        alignment = ' align="right"' if index % 2 == 0 else ''
-        links.append(f'<a href="https://github.com/{owner}/{name}"><img src="{asset}" width="49%"{alignment} alt="{alt}"></a>')
+        links.append(f'<a href="https://github.com/{owner}/{name}"><img src="{asset}" width="49%" alt="{alt}"></a>')
     if len(selected) % 2:
         asset = 'img/browse-all.svg'
         assets[asset] = '''<svg xmlns="http://www.w3.org/2000/svg" width="470" height="182" viewBox="0 0 470 182">
@@ -83,7 +82,7 @@ def render(repos, owner):
 <text x="24" y="162" fill="#d2a8ff" font-size="13">~/repos</text>
 <text x="446" y="162" fill="#8b949e" font-size="13" text-anchor="end">open GitHub ↗</text>
 </g></svg>'''
-        links.append(f'<a href="https://github.com/{owner}?tab=repositories"><img src="{asset}" width="49%" align="right" alt="Browse all GitHub repositories"></a>')
+        links.append(f'<a href="https://github.com/{owner}?tab=repositories"><img src="{asset}" width="49%" alt="Browse all GitHub repositories"></a>')
     rows = ['<p>' + ' '.join(links[i:i+2]) + '</p>' for i in range(0, len(links), 2)]
     return assets, '\n\n'.join(rows)
 
