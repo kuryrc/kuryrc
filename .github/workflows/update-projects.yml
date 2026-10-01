@@ -1,0 +1,46 @@
+name: Update profile projects
+
+on:
+  schedule:
+    - cron: '23 1 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+    paths:
+      - scripts/update_projects.py
+      - .github/workflows/update-projects.yml
+      - README.md
+      - img/terminal.svg
+      - img/follow.svg
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-projects
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh projects
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PROFILE_OWNER: ${{ github.repository_owner }}
+        run: python scripts/update_projects.py
+      - name: Commit updated section
+        run: |
+          if git diff --quiet -- README.md img && test -z "$(git ls-files --others --exclude-standard img)"; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md img
+          git commit -m 'docs: refresh profile projects'
+          git push

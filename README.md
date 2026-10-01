@@ -1,32 +1,11 @@
-# Hi, I'm kuryrc
+<p><img src="img/terminal.svg" width="960" alt="kuryrc — SRE / Infrastructure Engineer. Linux, compute, networking, Omarchy, Neovim and homelab."></p>
 
-**SRE / Infrastructure Engineer · Systems Enthusiast**
+<p><a href="https://github.com/kuryrc"><img src="img/follow.svg" width="33.3333%" alt="Follow kuryrc on GitHub"></a><a href="mailto:kuryrc@gmail.com"><img src="img/email.svg" width="33.3333%" alt="Email kuryrc@gmail.com"></a><a href="https://t.me/kuryrc_channel"><img src="img/telegram.svg" width="33.3333%" alt="Telegram channel @kuryrc_channel"></a></p>
 
-Based in **Shanghai** after nearly a decade in **Xiamen**. I use **Omarchy** with
-a **Neovim-first workflow** and run my own **homelab**.
+<!-- PROJECTS:START -->
 
-[Email](mailto:deyunluo1016@gmail.com)
+[![Automatically updated projects](img/projects-panel.svg)](https://github.com/kuryrc?tab=repositories)
 
-![The SICP Wizard Book](img/cover_image.gif)
+<!-- PROJECTS:END -->
 
-*My favorite image — the Wizard Book from SICP.*
-
----
-
-## Focus
-
-- **Compute & Virtualization** — OpenStack, KVM/QEMU, libvirt, Ironic, bare metal
-- **Linux & Performance** — Linux kernel, eBPF, BPFTrace
-- **Networking & Load Balancing** — HAProxy, BGP, L4/L7, OVN/OVS, Cilium,
-  SR-IOV, RDMA
-- **Platforms & Automation** — Kubernetes, Prometheus, Ansible
-- **Development** — Go, Python, Rust
-
-## Projects
-
-- **[omarchy-mfa](https://github.com/kuryrc/omarchy-mfa)** — a native,
-  keyboard-driven TOTP plugin for Omarchy with system keyring storage
-- **[pfwd](https://github.com/kuryrc/pfwd)** — network namespace-aware port
-  forwarding in Rust
-- **[fs-bench-rs](https://github.com/kuryrc/fs-bench-rs)** — filesystem
-  benchmarking and integrity checking in Rust
+[![Say hello — kuryrc@gmail.com](img/contact.svg)](mailto:kuryrc@gmail.com)
